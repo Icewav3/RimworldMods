@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Defs>
+
+	<ResearchProjectDef>
+		<defName>BaloxavirMarboxilProduction</defName>
+		<label>Baloxavir Marboxil Production</label>
+		<description>Learn to manufacture Baloxavir Marboxil to increase disease recouvery speed.</description>
+		<baseCost>1500</baseCost>
+		<techLevel>Industrial</techLevel>
+		<prerequisites>
+			<li>PenoxycylineProduction</li>
+		</prerequisites>
+		<researchViewX>2</researchViewX>
+		<researchViewY>4</researchViewY>
+	</ResearchProjectDef>
+
+</Defs>

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MakeableDrugBase">
+    <defName>Adderall</defName>
+    <label>adderall</label>
+    <description>A stimulant that is used and abused often on glitterworlds during schools, however it's much less potent than wake-up but it speeds up learning. Watch out for addiction however.</description>
+    <graphicData>
+      <texPath>Things/Adderall</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+	<stackLimit>100</stackLimit>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>1500</WorkToMake>
+      <MarketValue>60</MarketValue>
+      <Mass>0.1</Mass>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <foodType>Processed</foodType>
+      <joyKind>Chemical</joyKind>
+      <joy>0.2</joy>
+      <drugCategory>Medical</drugCategory>
+      <baseIngestTicks>90</baseIngestTicks>
+      <ingestHoldOffsetStanding>
+        <northDefault>
+          <offset>(0.18,0,0)</offset>
+        </northDefault>
+      </ingestHoldOffsetStanding>
+      <useEatingSpeedStat>false</useEatingSpeedStat>
+      <chairSearchRadius>0</chairSearchRadius>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>AdderallHigh</hediffDef>
+          <severity>1.0</severity>
+          <toleranceChemical>Adderall</toleranceChemical>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>AdderallTolerance</hediffDef>
+          <severity>0.05</severity>
+					<divideByBodySize>false</divideByBodySize>
+				</li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+			<researchPrerequisite>AdderallProduction</researchPrerequisite>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <Neutroamine>2</Neutroamine>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <chemical>Adderall</chemical>
+        <addictiveness>0.05</addictiveness>      <!-- 5% chance of addiction after 4 doses -->
+        <minToleranceToAddict>0.21</minToleranceToAddict>
+        <needLevelOffset>1</needLevelOffset>
+        <isCombatEnhancingDrug>false</isCombatEnhancingDrug>
+        <listOrder>200</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.18</min>
+          <max>0.35</max>
+        </overdoseSeverityOffset>
+				<largeOverdoseChance>0.0</largeOverdoseChance>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <HediffDef>
+    <defName>AdderallHigh</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>high on Adderall</label>
+    <labelNoun>a Adderall high</labelNoun>
+    <defaultLabelColor>(255, 0, 0)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1.0</severityPerDay>    <!-- the high -->
+      </li>
+    </comps>
+        <stages>
+            <li>
+              <statOffsets>
+              <GlobalLearningFactor>0.2</GlobalLearningFactor>
+              <WorkSpeedGlobal>0.1</WorkSpeedGlobal>
+            </statOffsets>
+              <restFallFactor>0.75</restFallFactor>
+              <capMods>
+                <li>
+                  <capacity>Sight</capacity>
+                    <offset>0.15</offset>
+                </li>
+              </capMods>
+            </li>
+        </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>AdderallHigh</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>AdderallHigh</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>Adderall high</label>
+        <description>I can focus well and I'm learning new concepts faster.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <!-- Adderall addiction -->
+
+  <ChemicalDef>
+    <defName>Adderall</defName>
+    <label>adderall</label>
+    <addictionHediff>AdderallAddiction</addictionHediff>
+    <toleranceHediff>AdderallTolerance</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.1</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+  
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_Adderall</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>adderall</label>
+    <description>Because of a adderall addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <listPriority>45</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>AdderallTolerance</defName>
+    <label>Adderall tolerance</label>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.05</severityPerDay> <!-- tolerance per day -->
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>Adderall</chemical>
+      </li>
+    </comps>
+		<hediffGivers>
+		<li Class="HediffGiver_RandomDrugEffect">
+			<hediff>ChemicalDamageSevere</hediff>
+			<minSeverity>0.1</minSeverity>
+			<baseMtbDays>120</baseMtbDays>
+			<partsToAffect>
+				<li>Kidney</li>
+			</partsToAffect>
+			<countToAffect>1</countToAffect>
+		</li>
+	</hediffGivers>
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>AdderallAddiction</defName>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <label>adderall addiction</label>
+    <causesNeed>Chemical_Adderall</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.05</severityPerDay>     <!-- how long the addiction lasts for 20 days atm-->
+      </li>
+    </comps>
+
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>     <!-- withdrawl effects,  -->
+        <restFallFactor>1.5</restFallFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.20</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+      </li>
+       <li>
+        <statOffsets>
+         <GlobalLearningFactor>-0.1</GlobalLearningFactor>
+      </statOffsets>
+     </li>
+    </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>AdderallWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>AdderallAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>adderall withdrawal</label>
+        <description>I'm having trouble focusing and I'm always tired.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+</Defs>

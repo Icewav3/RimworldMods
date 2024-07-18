@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Defs>
+
+	<ResearchProjectDef>
+		<defName>BorneolProduction</defName>
+		<label>Borneol Production</label>
+		<description>Lean to manufacture Borneol, a weak painkiller.</description>
+		<baseCost>800</baseCost>
+    	<techLevel>Neolithic</techLevel>
+    	<tags>
+      		<li>TribalStart</li>
+    	</tags>
+		<researchViewX>1.5</researchViewX>
+		<researchViewY>0</researchViewY>
+	</ResearchProjectDef>
+	
+</Defs>

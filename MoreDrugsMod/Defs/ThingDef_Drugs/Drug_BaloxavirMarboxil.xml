@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs> 
+  
+<ThingDef ParentName="MakeableDrugPillBase">
+  <defName>BaloxavirMarboxil</defName>
+  <label>Baloxavir Marboxil</label>
+  <description>Baloxavir Marboxil pills that increase immunity gain speed by slowing down the speed at which viral cell divide. It has no side effects beside overdose, lasts one full day.</description>
+  <graphicData>
+    <texPath>Things/BaloxavirMarboxil</texPath>
+    <graphicClass>Graphic_StackCount</graphicClass>
+  </graphicData>
+  <rotatable>false</rotatable>
+  <statBases>
+    <WorkToMake>1500</WorkToMake>
+    <MarketValue>40</MarketValue>
+    <Mass>0.005</Mass>
+  </statBases>
+  <techLevel>Industrial</techLevel>
+  <ingestible>
+    <drugCategory>Medical</drugCategory>
+    <outcomeDoers>
+      <li Class="IngestionOutcomeDoer_GiveHediff">
+        <hediffDef>BaloxavirMarboxil_Hediff</hediffDef>
+        <severity>1</severity>
+        <divideByBodySize>false</divideByBodySize>
+      </li>
+    </outcomeDoers>
+  </ingestible>
+  <recipeMaker>
+    <researchPrerequisite>BaloxavirMarboxilProduction</researchPrerequisite>
+     <recipeUsers>
+      <li>DrugLab</li>
+     </recipeUsers>
+   </recipeMaker>
+  <costList>
+    <Neutroamine>2</Neutroamine>
+    <MedicineIndustrial>1</MedicineIndustrial>
+  </costList>
+  <comps>
+    <li Class="CompProperties_Drug">
+      <chemical>BaloxavirMarboxil_Chem</chemical>
+      <addictiveness>0</addictiveness>
+      <minToleranceToAddict>0</minToleranceToAddict>
+      <existingAddictionSeverityOffset>0</existingAddictionSeverityOffset>
+      <needLevelOffset>0</needLevelOffset>
+      <listOrder>220</listOrder>
+      <overdoseSeverityOffset>
+        <min>0.11</min>
+        <max>0.25</max>
+      </overdoseSeverityOffset>
+      <largeOverdoseChance>0.0</largeOverdoseChance>
+    </li>
+  </comps>
+</ThingDef>
+
+<HediffDef>
+  <defName>BaloxavirMarboxil_Hediff</defName>
+  <hediffClass>HediffWithComps</hediffClass>
+  <label>Baloxavir Marboxil</label>
+  <labelNoun>Baloxavir Marboxil</labelNoun>
+  <defaultLabelColor>(138, 43, 226)</defaultLabelColor>
+  <scenarioCanAdd>true</scenarioCanAdd>
+  <maxSeverity>1.0</maxSeverity>
+  <isBad>false</isBad>
+  <comps>
+    <li Class="HediffCompProperties_SeverityPerDay">
+      <severityPerDay>-1.0</severityPerDay>
+    </li>
+  </comps>
+  <stages>
+    <li>
+      <statOffsets>
+        <ImmunityGainSpeed>0.2</ImmunityGainSpeed>
+      </statOffsets>
+    </li>
+  </stages>
+</HediffDef>
+
+<ChemicalDef>
+  <defName>BaloxavirMarboxil_Chem</defName>
+  <label>Baloxavir Marboxil</label>
+</ChemicalDef>
+
+</Defs>

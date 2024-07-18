@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MakeableDrugPillBase">
+    <defName>Penicillin</defName>
+    <label>Penicillin</label>
+    <description>A drug for blocking bacterial infections from wounds, great for use as a preemptive defence from infection before combat. *For advanced Rimworldians* Lasts for 1.2 days, however don't take it too early or it may wear off, very max is 10 hours before the infection reveals. Warning: does NOT cure existing infections.</description>
+    <graphicData>
+      <texPath>Things/Penicillin</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+    <stackLimit>25</stackLimit>
+    <socialPropernessMatters>false</socialPropernessMatters>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>1200</WorkToMake>
+      <MarketValue>60</MarketValue>
+      <Mass>0.005</Mass>
+      <Flammability>0.5</Flammability>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <drugCategory>Medical</drugCategory>
+      <ingestSound>Ingest_Drink</ingestSound>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>PenicillinHigh</hediffDef>
+          <severity>1.0</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+			<researchPrerequisite>PenicillinProduction</researchPrerequisite>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <Neutroamine>1</Neutroamine>
+      <MedicineHerbal>1</MedicineHerbal>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <listOrder>1000</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.08</min>
+          <max>0.14</max>
+        </overdoseSeverityOffset>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <HediffDef>
+    <defName>PenicillinHigh</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>Penicillin</label>
+    <defaultLabelColor>(1,0,0.5)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.75</severityPerDay>
+      </li>
+    </comps>
+      <stages>
+        <li>
+          <makeImmuneTo>
+						<li>WoundInfection</li>
+					</makeImmuneTo>
+				</li>
+      </stages>
+  </HediffDef>
+  
+</Defs>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs> 
+  
+<ThingDef ParentName="MakeableDrugPillBase">
+  <defName>IWItemAS</defName>
+  <label>Appetite suppressant</label>
+  <description>Appetite suppressant pills that reduce the users the need for food. However prolonged use can cause heart problems in users.</description>
+  <graphicData>
+    <texPath>Things/AppetiteSuppressant</texPath>
+    <graphicClass>Graphic_StackCount</graphicClass>
+  </graphicData>
+  <rotatable>false</rotatable>
+  <statBases>
+    <WorkToMake>1200</WorkToMake>
+    <MarketValue>15</MarketValue>
+    <Mass>0.005</Mass>
+  </statBases>
+  <techLevel>Industrial</techLevel>
+  <ingestible>
+    <drugCategory>Medical</drugCategory>
+    <outcomeDoers>
+      <li Class="IngestionOutcomeDoer_GiveHediff">
+        <hediffDef>IWHediffAS</hediffDef>
+        <severity>1</severity>
+        <divideByBodySize>false</divideByBodySize>
+      </li>
+    </outcomeDoers>
+  </ingestible>
+  <recipeMaker>
+    <researchPrerequisite>AppetiteSuppressantProduction</researchPrerequisite>
+     <recipeUsers>
+      <li>DrugLab</li>
+     </recipeUsers>
+   </recipeMaker>
+  <costList>
+    <Neutroamine>1</Neutroamine>
+  </costList>
+  <comps>
+    <li Class="CompProperties_Drug">
+      <chemical>IWChemAS</chemical>
+      <addictiveness>0</addictiveness>
+      <minToleranceToAddict>0</minToleranceToAddict>
+      <existingAddictionSeverityOffset>0</existingAddictionSeverityOffset>
+      <needLevelOffset>0</needLevelOffset>
+      <listOrder>220</listOrder>
+      <overdoseSeverityOffset>
+        <min>0.08</min>
+        <max>0.14</max>
+      </overdoseSeverityOffset>
+      <largeOverdoseChance>0.0</largeOverdoseChance>
+    </li>
+  </comps>
+</ThingDef>
+
+<HediffDef>
+  <defName>IWHediffAS</defName>
+  <hediffClass>HediffWithComps</hediffClass>
+  <label>Suppressed appetite</label>
+  <labelNoun>Appetite Suppresant</labelNoun>
+  <defaultLabelColor>(0, 1, 1)</defaultLabelColor>
+  <scenarioCanAdd>true</scenarioCanAdd>
+  <maxSeverity>1.0</maxSeverity>
+  <isBad>false</isBad>
+  <comps>
+    <li Class="HediffCompProperties_SeverityPerDay">
+      <severityPerDay>-1.0</severityPerDay>
+    </li>
+  </comps>
+  <stages>
+	 <li>
+	     <restFallFactor>1.1</restFallFactor> <!--this is the tiredness rate-->
+         <hungerRateFactorOffset>-0.65</hungerRateFactorOffset> <!--this is the hunger rate-->
+	 </li>
+  </stages>
+</HediffDef>
+
+<ChemicalDef>
+  <defName>IWChemAS</defName>
+  <label>Appetite Suppressant</label>
+  <toleranceHediff>IWToleranceAS</toleranceHediff>
+</ChemicalDef>
+
+<HediffDef ParentName="DrugToleranceBase">
+	<defName>IWToleranceAS</defName>
+	<label>Appetite Suppressant tolerance</label>
+	<comps>
+		<li Class="HediffCompProperties_SeverityPerDay">
+			<severityPerDay>-0.9</severityPerDay>
+		</li>
+		<li Class="HediffCompProperties_DrugEffectFactor">
+			<chemical>IWChemAS</chemical>
+		</li>
+	</comps>
+	<hediffGivers>
+		<li Class="HediffGiver_RandomDrugEffect">
+			<hediff>HeartAttack</hediff>
+			<baseMtbDays>80</baseMtbDays>
+			<partsToAffect>
+				<li>Heart</li>
+			</partsToAffect>
+		</li>
+	</hediffGivers>
+</HediffDef>
+
+</Defs>

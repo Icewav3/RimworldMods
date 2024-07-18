@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MakeableDrugBase">
+    <defName>Borneol</defName>
+    <label>borneol</label>
+    <description>A weak painkiller made from medicinal herbs, in tea form. It has little effects on the users health and withdrawl is very weak, however you will need 3 doses to get it to last a full day.</description>
+    <graphicData>
+      <texPath>Things/Borneol</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+	<stackLimit>100</stackLimit>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>12</MarketValue>
+      <Mass>0.1</Mass>
+      <DeteriorationRate>6</DeteriorationRate>
+    </statBases>
+    <techLevel>Neolithic</techLevel>
+   <ingestible>
+      <foodType>Fluid, Processed</foodType>
+      <joyKind>Chemical</joyKind>
+      <joy>0.10</joy>
+      <baseIngestTicks>200</baseIngestTicks>
+      <nurseable>true</nurseable>
+      <drugCategory>Medical</drugCategory>
+      <ingestSound>Ingest_Drink</ingestSound>
+      <ingestHoldOffsetStanding>
+        <northDefault>
+          <offset>(0.18,0,0)</offset>
+        </northDefault>
+      </ingestHoldOffsetStanding>
+      <ingestHoldUsesTable>false</ingestHoldUsesTable>
+      <ingestCommandString>Drink {0}</ingestCommandString>
+      <ingestReportString>Drinking {0}.</ingestReportString>
+      <useEatingSpeedStat>false</useEatingSpeedStat>
+      <chairSearchRadius>0</chairSearchRadius>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>BorneolHigh</hediffDef>
+          <severity>0.34</severity>
+          <toleranceChemical>Borneol</toleranceChemical>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>BorneolTolerance</hediffDef>
+          <severity>0.01</severity>
+					<divideByBodySize>false</divideByBodySize>
+				</li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+			<researchPrerequisite>BorneolProduction</researchPrerequisite>
+      <recipeUsers>
+        <li>Campfire</li>
+        <li>ElectricStove</li>
+        <li>FueledStove</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <MedicineHerbal>1</MedicineHerbal>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <chemical>Borneol</chemical>
+        <addictiveness>0.05</addictiveness>      <!-- 5% chance of addiction after 10 doses -->
+        <minToleranceToAddict>0.10</minToleranceToAddict>
+        <needLevelOffset>1</needLevelOffset>
+        <isCombatEnhancingDrug>false</isCombatEnhancingDrug>
+        <listOrder>200</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.0</min>
+          <max>0.0</max>
+        </overdoseSeverityOffset>
+				<largeOverdoseChance>0.0</largeOverdoseChance>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <HediffDef>
+    <defName>BorneolHigh</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>high on Borneol</label>
+    <labelNoun>a Borneol high</labelNoun>
+    <defaultLabelColor>(0, 143, 0)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1</severityPerDay>
+      </li>
+    </comps>
+      <stages>
+          <li>
+            <painFactor>0.75</painFactor>     
+        </li>
+      </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>BorneolHigh</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>BorneolHigh</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>Borneol high</label>
+        <description>My pain seems to have been numbed a bit, and the tea was relaxing.</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <!-- Borneol addiction -->
+
+  <ChemicalDef>
+    <defName>Borneol</defName>
+    <label>Borneol</label>
+    <addictionHediff>BorneolAddiction</addictionHediff>
+    <toleranceHediff>BorneolTolerance</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.05</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+  
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_Borneol</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>Borneol</label>
+    <description>Because of a Borneol addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <listPriority>45</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>BorneolTolerance</defName>
+    <label>Borneol tolerance</label>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.04</severityPerDay>
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>Borneol</chemical>
+      </li>
+    </comps>
+		<hediffGivers>
+			<li Class="HediffGiver_Random">
+				<hediff>ChemicalDamageModerate</hediff>
+				<mtbDays>120</mtbDays>
+				<partsToAffect>
+				<li>Liver</li>
+			</partsToAffect>
+		</li>
+	</hediffGivers>
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>BorneolAddiction</defName>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <label>Borneol addiction</label>
+    <causesNeed>Chemical_Borneol</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.1</severityPerDay>     <!-- how long the addiction lasts for-->
+      </li>
+    </comps>
+
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>
+        <painFactor>1.1</painFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.5</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>BorneolWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>BorneolAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>Borneol withdrawal</label>
+        <description>I'm feeling some pains I didn't before and my brain is a little fuzzy.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+</Defs>

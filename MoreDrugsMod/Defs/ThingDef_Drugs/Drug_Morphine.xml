@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="MakeableDrugBase">
+    <defName>Morphine</defName>
+    <label>morphine</label>
+    <description>A very potent medicinal painkiller, it blocks all pain, however reduces cognitive function and movement speed. It's designed to help the mood of recovering hospital patients, it can cause respiratory problems. It is addictive, but the chances of addiction are low and it's not very severe.</description>
+    <graphicData>
+      <texPath>Things/Morphine</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+    </graphicData>
+	<stackLimit>25</stackLimit>
+    <rotatable>false</rotatable>
+    <statBases>
+      <WorkToMake>1500</WorkToMake>
+      <MarketValue>60</MarketValue>
+      <Mass>0.1</Mass>
+    </statBases>
+    <techLevel>Industrial</techLevel>
+    <ingestible>
+      <joyKind>Chemical</joyKind>
+      <joy>0.60</joy>
+      <drugCategory>Medical</drugCategory>
+      <foodType>Processed, Fluid</foodType>
+      <baseIngestTicks>100</baseIngestTicks>
+      <ingestSound>Ingest_Inject</ingestSound>
+      <ingestHoldOffsetStanding>
+        <northDefault>
+          <offset>(0.18,0,0)</offset>
+        </northDefault>
+      </ingestHoldOffsetStanding>
+      <ingestCommandString>Inject {0}</ingestCommandString>
+      <ingestReportString>Injecting {0}.</ingestReportString>
+      <useEatingSpeedStat>false</useEatingSpeedStat>
+      <chairSearchRadius>0</chairSearchRadius>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>MorphineHigh</hediffDef>
+          <severity>1.0</severity>
+          <toleranceChemical>Morphine</toleranceChemical>
+        </li>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>MorphineTolerance</hediffDef>
+          <severity>0.05</severity>
+					<divideByBodySize>false</divideByBodySize>
+				</li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+			<researchPrerequisite>MorphineProduction</researchPrerequisite>
+      <recipeUsers>
+        <li>DrugLab</li>
+      </recipeUsers>
+    </recipeMaker>
+    <costList>
+      <PsychoidLeaves>12</PsychoidLeaves>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <chemical>Morphine</chemical>
+        <addictiveness>0.2</addictiveness>      <!-- 20% chance of addiction after 4 doses -->
+        <minToleranceToAddict>0.21</minToleranceToAddict>
+        <needLevelOffset>1</needLevelOffset>
+        <isCombatEnhancingDrug>false</isCombatEnhancingDrug>
+        <listOrder>200</listOrder>
+        <overdoseSeverityOffset>
+          <min>0.18</min>
+          <max>0.35</max>
+        </overdoseSeverityOffset>
+				<largeOverdoseChance>0.0</largeOverdoseChance>
+      </li>
+    </comps>
+  </ThingDef>
+  
+  <HediffDef>
+    <defName>MorphineHigh</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>high on Morphine</label>
+    <labelNoun>a Morphine high</labelNoun>
+    <defaultLabelColor>(0, 255, 153)</defaultLabelColor>
+    <scenarioCanAdd>true</scenarioCanAdd>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-1.0</severityPerDay>    <!-- the high -->
+      </li>
+    </comps>
+      <stages>
+          <li>
+            <painFactor>0.0</painFactor>
+            <restFallFactor>1.2</restFallFactor>
+           <capMods>
+              <li>
+                <capacity>Consciousness</capacity>
+                <offset>-0.15</offset>
+              </li>
+          </capMods>
+        </li>
+      </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>MorphineHigh</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>MorphineHigh</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>Morphine high</label>
+        <description>I feel nothing, it is bliss.</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+  <!-- Morphine addiction -->
+
+  <ChemicalDef>
+    <defName>Morphine</defName>
+    <label>morphine</label>
+    <addictionHediff>MorphineAddiction</addictionHediff>
+    <toleranceHediff>MorphineTolerance</toleranceHediff>
+		<onGeneratedAddictedToleranceChance>0.8</onGeneratedAddictedToleranceChance>
+	</ChemicalDef>
+  
+  <NeedDef ParentName="DrugAddictionNeedBase">
+    <defName>Chemical_Morphine</defName>
+    <needClass>Need_Chemical</needClass>
+    <label>morphine</label>
+    <description>Because of a morphine addiction, this person needs to regularly consume the drug to avoid withdrawal symptoms.</description>
+    <listPriority>45</listPriority>
+  </NeedDef>
+
+  <HediffDef ParentName="DrugToleranceBase">
+    <defName>MorphineTolerance</defName>
+    <label>Morphine tolerance</label>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.04</severityPerDay> <!-- tolerance per day -->
+      </li>
+      <li Class="HediffCompProperties_DrugEffectFactor">
+        <chemical>Morphine</chemical>
+      </li>
+    </comps>
+		<hediffGivers>
+		<li Class="HediffGiver_RandomDrugEffect">
+			<hediff>Asthma</hediff>
+			<minSeverity>0.1</minSeverity>
+			<baseMtbDays>80</baseMtbDays>
+			<partsToAffect>
+				<li>Lung</li>
+			</partsToAffect>
+			<countToAffect>2</countToAffect>
+		</li>
+	</hediffGivers>
+  </HediffDef>
+
+  <HediffDef ParentName="AddictionBase">
+    <defName>MorphineAddiction</defName>
+    <hediffClass>Hediff_Addiction</hediffClass>
+    <label>morphine addiction</label>
+    <causesNeed>Chemical_Morphine</causesNeed>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.1</severityPerDay>     <!-- how long the addiction lasts for-->
+      </li>
+    </comps>
+
+    <stages>
+      <li>
+      </li>
+      <li>
+        <label>withdrawal</label>     <!-- withdrawl effects, 50% more pain, -10% consciousness, -10% moving, 10% faster tiredness fall rate. -->
+        <painFactor>1.5</painFactor>
+        <restFallFactor>1.2</restFallFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.15</offset>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.10</offset>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <offset>-0.10</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  
+  <ThoughtDef>
+    <defName>MorphineWithdrawal</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>MorphineAddiction</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <visible>false</visible>
+      </li>
+      <li>
+        <label>morphine withdrawal</label>
+        <description>Pain feels more severe, I'm having some trouble focusing and my hands are shaky.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+  
+</Defs>
