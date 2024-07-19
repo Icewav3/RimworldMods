@@ -1,0 +1,18 @@
+<Defs>
+  <ThingDef ParentName="ItemBase">
+    <defName>RawPoppy</defName>
+    <label>poppy pod</label>
+    <description>Poppy pods harvested from poppy plants. Can be refined into morphine at a drug lab.</description>
+    <graphicData>
+      <texPath>Things/Items/PlantHarvest/Poppy_Harvest</texPath>
+      <drawSize>1</drawSize>
+    </graphicData>
+    <statBases>
+      <MarketValue>1</MarketValue>
+      <Mass>0.02</Mass>
+    </statBases>
+    <thingCategories>
+      <li>PlantMatter</li>
+    </thingCategories>
+  </ThingDef>
+</Defs>
