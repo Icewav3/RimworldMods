@@ -1,0 +1,35 @@
+<Defs>
+  <ThingDef ParentName="PlantBase">
+    <defName>Plant_Poppy</defName>
+    <label>poppy plant</label>
+    <description>A beautiful poppy plant that produces poppy seeds when harvested.</description>
+    <graphicData>
+      <texPath>Things/Plants/PoppyPlant</texPath>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+    <statBases>
+      <MarketValue>1.5</MarketValue>
+      <WorkToMake>1500</WorkToMake>
+      <Beauty>1</Beauty>
+    </statBases>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <plant>
+      <wildBiomes>
+        <BiomeDef>TemperateForest</BiomeDef>
+        <BiomeDef>BorealForest</BiomeDef>
+      </wildBiomes>
+      <growDays>5</growDays>
+      <harvestYield>3</harvestYield>
+      <harvestedThingDef>Drug_PoppySeed</harvestedThingDef>
+      <sowTags>
+        <li>Ground</li>
+        <li>Hydroponic</li>
+      </sowTags>
+    </plant>
+    <thingCategories>
+      <li>Plant</li>
+    </thingCategories>
+  </ThingDef>
+</Defs>
