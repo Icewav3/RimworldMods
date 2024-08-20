@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   <ThingDef ParentName="PlantBase">
     <defName>Plant_Poppy</defName>
@@ -16,13 +17,11 @@
       <li Class="CompProperties_Forbiddable" />
     </comps>
     <plant>
-      <wildBiomes>
-        <BiomeDef>TemperateForest</BiomeDef>
-        <BiomeDef>BorealForest</BiomeDef>
-      </wildBiomes>
       <growDays>5</growDays>
       <harvestYield>3</harvestYield>
       <harvestedThingDef>Drug_PoppySeed</harvestedThingDef>
+      <wildClusterRadius>5</wildClusterRadius>
+      <wildClusterWeight>4</wildClusterWeight>
       <sowTags>
         <li>Ground</li>
         <li>Hydroponic</li>

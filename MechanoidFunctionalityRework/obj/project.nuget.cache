@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "q1FZBhr5UO7NVXYR/TxvDjgeMRE5+hIWNPz9Hfmsnqp/bFPTC9BwHnCJcjJyD3ZcoqEGXI/v6OnXZvCrOx8bBw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\coled\\Desktop\\github\\RimworldMods\\MechanoidFunctionalityRework\\MechanoidFunctionalityRework.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\coled\\.nuget\\packages\\krafs.rimworld.ref\\1.5.4184-beta\\krafs.rimworld.ref.1.5.4184-beta.nupkg.sha512",
+    "C:\\Users\\coled\\.nuget\\packages\\lib.harmony\\2.3.3\\lib.harmony.2.3.3.nupkg.sha512",
+    "C:\\Users\\coled\\.nuget\\packages\\verse\\0.6.0\\verse.0.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}

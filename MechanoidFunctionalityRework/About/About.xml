@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModMetaData>
+  <name>MechanoidFunctionalityRework</name>
+  <author>Icewave</author>
+  <version>1.0</version>
+  <description>
+    This mod expands the functionality of the Centurion mechanoid by allowing it to act as a proxy commander, similar to a mechanitor. 
+    With this mod, players can draft and command mechanoids within the Centurion's command range, enabling more dynamic combat control. 
+    Additionally, the Centurion can now fulfill the requirement of having a colonist in a caravan, allowing players to form mechanoid-only caravans. 
+
+    Key Features:
+    - Command mechanoids within the Centurion's range, just like a mechanitor.
+    - Draft mechanoids for combat directly through the Centurion.
+    - Use the Centurion as a colonist proxy to fulfill caravan requirements, enabling mechanoid-only caravans.
+    - Optimized code to ensure smooth performance with large modlists and mod compatibility.
+
+    Dependencies:
+    - Requires the Biotech DLC.
+  </description>
+  <supportedVersions>
+    <li>1.5</li>
+    <li>1.4</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>ludeon.rimworld.biotech</li> <!-- Dependency on Biotech DLC -->
+     <li>brrainz.harmony</li>
+  </modDependencies>
+</ModMetaData>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BiomeDef[defName="TemperateForest"]/wildPlants</xpath>
+    <value>
+      <BiomePlantRecord>
+        <plant>Plant_Poppy</plant>
+        <commonality>0.1</commonality>
+      </BiomePlantRecord>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BiomeDef[defName="BorealForest"]/wildPlants</xpath>
+    <value>
+      <BiomePlantRecord>
+        <plant>Plant_Poppy</plant>
+        <commonality>0.35</commonality>
+      </BiomePlantRecord>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BiomeDef[defName="Tundra"]/wildPlants</xpath>
+    <value>
+      <BiomePlantRecord>
+        <plant>Plant_Poppy</plant>
+        <commonality>1.3</commonality>
+      </BiomePlantRecord>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BiomeDef[defName="AridShrubland"]/wildPlants</xpath>
+    <value>
+      <BiomePlantRecord>
+        <plant>Plant_Poppy</plant>
+        <commonality>0.55</commonality>
+      </BiomePlantRecord>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BiomeDef[defName="TropicalSwamp"]/wildPlants</xpath>
+    <value>
+      <BiomePlantRecord>
+        <plant>Plant_Poppy</plant>
+        <commonality>0.02</commonality>
+      </BiomePlantRecord>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BiomeDef[defName="TemperateSwamp"]/wildPlants</xpath>
+    <value>
+      <BiomePlantRecord>
+        <plant>Plant_Poppy</plant>
+        <commonality>0.03</commonality>
+      </BiomePlantRecord>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/BiomeDef[defName="ColdBog"]/wildPlants</xpath>
+    <value>
+      <BiomePlantRecord>
+        <plant>Plant_Poppy</plant>
+        <commonality>0.05</commonality>
+      </BiomePlantRecord>
+    </value>
+  </Operation>
+</Patch>
+//TODO
+Exception in custom XML loader for RimWorld.BiomePlantRecord. Node is:
+ <BiomePlantRecord><plant>Plant_Poppy</plant><commonality>0.35</commonality></BiomePlantRecord>
+
+Exception is:
+ System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: value
+  at System.Number.ParseSingle (System.String value, System.Globalization.NumberStyles options, System.Globalization.NumberFormatInfo numfmt) [0x00003] in <eae584ce26bc40229c1b1aa476bfa589>:0 
+  at System.Single.Parse (System.String s, System.Globalization.NumberStyles style, System.Globalization.NumberFormatInfo info) [0x00000] in <eae584ce26bc40229c1b1aa476bfa589>:0 
+  at System.Single.Parse (System.String s, System.IFormatProvider provider) [0x0000c] in <eae584ce26bc40229c1b1aa476bfa589>:0 
+  at Verse.ParseHelper.ParseFloat (System.String str) [0x00006] in <f0ac5eb9b52e4cc396c70fc9a4ee15e5>:0 
+  at Verse.ParseHelper.FromString[T] (System.String str) [0x00009] in <f0ac5eb9b52e4cc396c70fc9a4ee15e5>:0 
+  at RimWorld.BiomePlantRecord.LoadDataFromXmlCustom (System.Xml.XmlNode xmlRoot) [0x0001b] in <f0ac5eb9b52e4cc396c70fc9a4ee15e5>:0 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <eae584ce26bc40229c1b1aa476bfa589>:0 
+   --- End of inner exception stack trace ---
