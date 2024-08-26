@@ -57,6 +57,7 @@
   <hediffClass>HediffWithComps</hediffClass>
   <label>Suppressed appetite</label>
   <labelNoun>Appetite Suppresant</labelNoun>
+  <description>Appetite Suppressant is a drug that slows metabolism but can cause long term weakness if overused.</description>
   <defaultLabelColor>(0, 1, 1)</defaultLabelColor>
   <scenarioCanAdd>true</scenarioCanAdd>
   <maxSeverity>1.0</maxSeverity>
