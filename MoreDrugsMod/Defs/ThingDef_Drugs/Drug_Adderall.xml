@@ -74,6 +74,7 @@
     <hediffClass>HediffWithComps</hediffClass>
     <label>high on Adderall</label>
     <labelNoun>a Adderall high</labelNoun>
+    <description>Adderall in the bloodstream. It increased bloodflow to the brain which allows for faster learning and slightly increased global work speed</description>
     <defaultLabelColor>(255, 0, 0)</defaultLabelColor>
     <scenarioCanAdd>true</scenarioCanAdd>
     <maxSeverity>1.0</maxSeverity>
