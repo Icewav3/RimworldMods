@@ -58,6 +58,7 @@
   <hediffClass>HediffWithComps</hediffClass>
   <label>Baloxavir Marboxil</label>
   <labelNoun>Baloxavir Marboxil</labelNoun>
+  <description>Baloxavir Marboxil is a drug that slows cell division which prevents virus from reproducing nearly as fast which results in an advantage to the body's immune system. </description>
   <defaultLabelColor>(138, 43, 226)</defaultLabelColor>
   <scenarioCanAdd>true</scenarioCanAdd>
   <maxSeverity>1.0</maxSeverity>
@@ -70,7 +71,7 @@
   <stages>
     <li>
       <statOffsets>
-        <ImmunityGainSpeed>0.2</ImmunityGainSpeed>
+        <ImmunityGainSpeed>0.5</ImmunityGainSpeed>
       </statOffsets>
     </li>
   </stages>
