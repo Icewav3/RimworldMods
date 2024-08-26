@@ -82,6 +82,7 @@
     <hediffClass>HediffWithComps</hediffClass>
     <label>high on Borneol</label>
     <labelNoun>a Borneol high</labelNoun>
+    <description>Borneol in the bloodstream, borneal decreases the severity of the pain felt by the user.</description>
     <defaultLabelColor>(0, 143, 0)</defaultLabelColor>
     <scenarioCanAdd>true</scenarioCanAdd>
     <maxSeverity>1.0</maxSeverity>
